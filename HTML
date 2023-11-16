@@ -1,0 +1,80 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>Age Calculater</title>
+    <meta name="discription" content="html 5.0">
+    <meta name ="author" content="Subbarao">
+    <meta name="keywords" content="html tags and attributes " >
+    <meta name="view-port" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="icon" href="age.png">
+    <link rel="stylesheet" href="E:\CodeAlpha\age-calculator.css">
+</head> 
+
+<body> 
+	<div class="container"> 
+        <div class="calculator">
+			<h1>AGE CALCULATOR</h1> 
+		<div class="input-date"> 
+			<label>Enter your Date of Birth</label>
+			<input id="input-date" type="date"> 
+			<label>Current Date</label>
+			<input id="current-date" type="date"> 
+            <br>
+            <button type="button" onclick="getDOB()"> Calculate  </button> 
+		</div> 
+        
+		<div id="currentAge"></div> 
+    </div>
+	</div> 
+
+            <script>
+               // define thefuntion to get calculated Age 
+                function getDOB() { 
+
+                // getting theinput from html input element 
+                let data = document.getElementById("input-date").value; 
+                // converting the input data to usable format 
+                // as day,month and year 
+                let dob = new Date(data); 
+                let d1 = dob.getDate(); 
+                let m1 = dob.getMonth(); 
+                let y1 = dob.getFullYear(); 
+
+                // getting the current date and calculating the difference 
+                let now = new Date(document.getElementById("current-date").value); 
+                console.log(now); 
+                let y2= now.getFullYear() - y1; 
+                let m2 = now.getMonth() - m1; 
+                let d2 = now.getDate() - d1; 
+
+                // calculating the Age 
+                if (y2< 0) 
+                console.log("invalid date"); 
+                else if (m2 > 0) { 
+                    console.log(y2); 
+                } else if (m2 === 0 && d2 >= 0) { 
+                    console.log(y2); 
+                } else { 
+                    y2 = y2 - 1; 
+                    if (m2 <= 0) 
+                        if (d2 > 0) m2= 12 + m2; 
+                        else m2 = 11 - m2; 
+                } 
+                if (d2 < 0) { 
+                    d2 = 30 + d2; 
+                    m2 -= 1; 
+                } 
+
+                // show calculated age as output and invalid if wrong input is given 
+                if (y2 < 0) 
+                    document.getElementById("currentAge").innerHTML = "Invalid Date"; 
+                else
+                    document.getElementById("currentAge").innerHTML = 
+                        "Your current Age is " + y2 + " years "
+                        + m2 + " months " + d2 + " days"; 
+                } 
+            </script>
+        </body>
+    </html>
+    
